@@ -703,16 +703,18 @@ function rcp_get_upgrade_paths( $user_id = 0 ) {
 	$user_subscription = ( rcp_is_recurring( $user_id ) && rcp_is_active( $user_id ) && 'cancelled' !== rcp_get_status() ) ? rcp_get_subscription_id( $user_id ) : '';
 	$subscriptions     = rcp_get_subscription_levels( 'active' );
 
-	// remove the user's current subscription from the list
+
 	foreach( $subscriptions as $key => $subscription ) {
+		// remove the user's current subscription from the list
 		if ( $user_subscription == $subscription->id ) {
 			unset( $subscriptions[ $key ] );
 		}
+		// remove suscriptions not elegible by user		
+		if(!rcp_show_subscription_level( $subscription->id, $user_id = 0 )){
+			unset( $subscriptions[ $key ] );			
+		}
 	}
-
-	return apply_filters( 'rcp_get_upgrade_paths', array_values( $subscriptions ), $user_id );
 }
-
 /**
  * Process Profile Updater Form
  *
