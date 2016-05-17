@@ -31,6 +31,7 @@ class RCP_Payment_Gateway_PayPal extends RCP_Payment_Gateway {
 		$this->supports[]  = 'fees';
 
 		$this->test_mode   = isset( $rcp_options['sandbox'] );
+		$this->card_zip_required= isset ($rcp_settings['require_card_zip']);		
 
 		if( $this->test_mode ) {
 

@@ -27,6 +27,7 @@ class RCP_Payment_Gateway {
 	public $auto_renew;
 	public $return_url;
 	public $test_mode;
+	public $card_zip_required;
 
 	public function __construct( $subscription_data = array() ) {
 

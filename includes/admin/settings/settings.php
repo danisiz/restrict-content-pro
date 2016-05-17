@@ -263,6 +263,15 @@ function rcp_settings_page() {
 								<p class="description"><?php _e( 'Show the currency sign before or after the price?', 'rcp' ); ?></p>
 							</td>
 						</tr>
+						<tr valign="top">
+							<th>
+								<label for="rcp_settings[require_card_zip]"><?php _e( 'Require Card Zip', 'rcp' ); ?></label>
+							</th>
+							<td>
+								<input type="checkbox" value="1" name="rcp_settings[require_card_zip]" id="rcp_settings[require_card_zip]" <?php if( isset( $rcp_options['require_card_zip'] ) ) checked('1', $rcp_options['require_card_zip']); ?>/>
+								<span class="description"><?php _e( 'Require Card Zip on payments', 'rcp' ); ?></span>
+							</td>
+						</tr>							
 						<?php $gateways = rcp_get_payment_gateways(); ?>
 						<?php if ( count( $gateways ) > 1 ) : ?>
 						<tr valign="top">

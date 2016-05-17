@@ -31,6 +31,7 @@ class RCP_Payment_Gateway_2Checkout extends RCP_Payment_Gateway {
 
 		$this->secret_word = isset( $rcp_options['twocheckout_secret_word'] ) ? trim( $rcp_options['twocheckout_secret_word'] ) : '';
 		$this->test_mode   = isset( $rcp_options['sandbox'] );
+		$this->card_zip_required= isset ($rcp_settings['require_card_zip']);			
 
 		if( $this->test_mode ) {
 
@@ -397,7 +398,7 @@ class RCP_Payment_Gateway_2Checkout extends RCP_Payment_Gateway {
 			rcp_errors()->add( 'missing_card_country', __( 'The country you have entered is invalid', 'rcp' ), 'register' );
 		}
 
-		if( empty( $_POST['rcp_card_zip'] ) && $this->card_needs_state_and_zip() ) {
+		if( empty( $_POST['rcp_card_zip'] ) && $this->card_zip_required ) {
 			rcp_errors()->add( 'missing_card_zip', __( 'The zip / postal code you have entered is invalid', 'rcp' ), 'register' );
 		}
 

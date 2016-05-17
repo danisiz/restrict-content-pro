@@ -1,4 +1,7 @@
-<?php $member = new RCP_Member( get_current_user_id() ); ?>
+<?php $member = new RCP_Member( get_current_user_id() );
+global $rcp_options;
+$require_card_zip=$rcp_options['require_card_zip'];
+?>
 <form id="rcp_update_card_form" class="rcp_form" action="" method="POST">
 
 	<?php $cards = $member->get_card_details(); ?>
@@ -26,10 +29,12 @@
 			<label><?php _e( 'Card CVC', 'rcp' ); ?></label>
 			<input type="text" size="4" maxlength="4" name="rcp_card_cvc" class="rcp_card_cvc card-cvc" />
 		</p>
+		<?php if ($require_card_zip) { ?>		
 		<p id="rcp_card_zip_wrap">
 			<label><?php _e( 'Card ZIP or Postal Code', 'rcp' ); ?></label>
 			<input type="text" size="4" name="rcp_card_zip" class="rcp_card_zip card-zip" />
 		</p>
+		<?php } ?>		
 		<p id="rcp_card_name_wrap">
 			<label><?php _e( 'Name on Card', 'rcp' ); ?></label>
 			<input type="text" size="20" name="rcp_card_name" class="rcp_card_name card-name" />

@@ -29,6 +29,7 @@ class RCP_Payment_Gateway_PayPal_Pro extends RCP_Payment_Gateway {
 		$this->supports[]  = 'fees';
 
 		$this->test_mode   = isset( $rcp_options['sandbox'] );
+		$this->card_zip_required= isset ($rcp_settings['require_card_zip']);			
 
 		if( $this->test_mode ) {
 
@@ -184,7 +185,7 @@ class RCP_Payment_Gateway_PayPal_Pro extends RCP_Payment_Gateway {
 			$this->add_error( 'missing_card_code', __( 'The security code you have entered is invalid', 'rcp' ) );
 		}
 
-		if( empty( $_POST['rcp_card_zip'] ) ) {
+		if( empty( $_POST['rcp_card_zip'] )  && $this->card_zip_required ) {
 			$this->add_error( 'missing_card_zip', __( 'The zip / postal code you have entered is invalid', 'rcp' ) );
 		}
 
