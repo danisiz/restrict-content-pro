@@ -7,14 +7,14 @@ module.exports = {
 		trace: true,
 		lineNumbers: true
 	},
-		files: [
-			{
-				expand: true,
-				cwd: '<%= pkg.directories.sass %>',
-				src: 'style.scss',
-				dest: '',
-				ext: '.css'
-			}
-		]
-	}
+        files: [
+                {
+                        expand: true,
+                        cwd: '<%= pkg.directories.sass %>',
+                        src: 'style.scss',
+                        dest: '',
+                        ext: '.css'
+                }
+        ]
+	
 };
